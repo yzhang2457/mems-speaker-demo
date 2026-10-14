@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MEMS Microspeaker Listening Demo</title>
+<meta name="description" content="Listen to music played through an electromagnetic MEMS microspeaker and a Sennheiser IE 100 Pro, recorded in the same ear simulator.">
+<style>
+  :root {
+    --cardinal: #991B1E; --gold: #FFCC00; --ink: #1F2A33; --muted: #5B6670;
+    --bg: #F6F4F1; --card: #FFFFFF; --line: #E2DED8; --soft: #FFF2BF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink: #ECE9E4; --muted: #A7AFB7; --bg: #17191C; --card: #22262A; --line: #353A40; --soft: #3A3320; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.55 -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+  header { background: var(--cardinal); color: #fff; padding: 28px 16px 24px; }
+  header .wrap, main { max-width: 640px; margin: 0 auto; }
+  header p.kicker { margin: 0 0 6px; color: var(--gold); font-weight: 700; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+  h1 { margin: 0 0 8px; font-size: 26px; line-height: 1.2; }
+  header p.authors { margin: 0; font-size: 14px; opacity: .9; }
+  main { padding: 20px 16px 40px; }
+  .tip { background: var(--soft); border-radius: 12px; padding: 12px 14px; font-size: 15px; margin-bottom: 18px; }
+  .track { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+  .track h2 { margin: 0 0 2px; font-size: 19px; }
+  .track .sub { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .play { flex: none; width: 56px; height: 56px; border-radius: 50%; border: 0; background: var(--cardinal);
+          color: #fff; font-size: 22px; cursor: pointer; display: grid; place-items: center; }
+  .play:focus-visible, .seg button:focus-visible, input[type=range]:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .timeline { flex: 1; min-width: 0; }
+  input[type=range] { width: 100%; accent-color: var(--cardinal); }
+  .time { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 14px; background: var(--bg);
+         border-radius: 12px; padding: 4px; }
+  .seg button { border: 0; border-radius: 9px; padding: 10px 6px; background: transparent; color: var(--ink);
+                font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; line-height: 1.25; }
+  .seg button small { display: block; font-weight: 400; color: var(--muted); font-size: 12px; }
+  .seg button[aria-pressed="true"] { background: var(--cardinal); color: #fff; }
+  .seg button[aria-pressed="true"] small { color: #F3D9DA; }
+  section.about { font-size: 15px; color: var(--muted); }
+  section.about h3 { color: var(--ink); font-size: 16px; margin: 24px 0 6px; }
+  section.about ul { padding-left: 20px; margin: 6px 0; }
+  footer { text-align: center; font-size: 13px; color: var(--muted); padding: 0 16px 32px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="kicker">USC MHI Research Festival 2026 · Listening demo</p>
+    <h1>Full-range electromagnetic MEMS microspeaker</h1>
+    <p class="authors">Yicheng Zhang, Anik Sengupta, Kianoush Sadeghian Esfahani, Eun Sok Kim · University of Southern California</p>
+  </div>
+</header>
+
+<main>
+  <div class="tip"><strong>Use headphones.</strong> Press play, then tap the two buttons to switch instantly between our MEMS microspeaker and a commercial earphone at the same point in the song.</div>
+
+  <div class="track" data-track>
+    <h2>Hotel California</h2>
+    <p class="sub">30-second excerpt</p>
+    <audio preload="auto" src="audio/hotel-california_mems.m4a"></audio>
+    <audio preload="auto" src="audio/hotel-california_ie100.m4a"></audio>
+    <div class="row">
+      <button class="play" aria-label="Play Hotel California">&#9654;</button>
+      <div class="timeline">
+        <input type="range" min="0" max="30" step="0.1" value="0" aria-label="Seek in Hotel California">
+        <div class="time"><span class="cur">0:00</span><span class="dur">0:30</span></div>
+      </div>
+    </div>
+    <div class="seg" role="group" aria-label="Choose speaker">
+      <button aria-pressed="true">This work<small>MEMS microspeaker</small></button>
+      <button aria-pressed="false">IE 100 Pro<small>10 mm dynamic driver</small></button>
+    </div>
+  </div>
+
+  <div class="track" data-track>
+    <h2>Breathless</h2>
+    <p class="sub">30-second excerpt</p>
+    <audio preload="auto" src="audio/breathless_mems.m4a"></audio>
+    <audio preload="auto" src="audio/breathless_ie100.m4a"></audio>
+    <div class="row">
+      <button class="play" aria-label="Play Breathless">&#9654;</button>
+      <div class="timeline">
+        <input type="range" min="0" max="30" step="0.1" value="0" aria-label="Seek in Breathless">
+        <div class="time"><span class="cur">0:00</span><span class="dur">0:30</span></div>
+      </div>
+    </div>
+    <div class="seg" role="group" aria-label="Choose speaker">
+      <button aria-pressed="true">This work<small>MEMS microspeaker</small></button>
+      <button aria-pressed="false">IE 100 Pro<small>10 mm dynamic driver</small></button>
+    </div>
+  </div>
+
+  <section class="about">
+    <h3>How these were recorded</h3>
+    <ul>
+      <li>Both speakers played the same tracks at the same drive level into an IEC 60318-4 ear simulator (1.26 cc) inside an anechoic chamber.</li>
+      <li>Both recordings received identical processing: compressor, limiter and loudness normalization.</li>
+      <li>An ear simulator is not a human ear, so this is a side-by-side comparison, not exactly what you would hear wearing either earphone.</li>
+    </ul>
+    <h3>About the microspeaker</h3>
+    <p>A 26 mm² corrugated Parylene-D diaphragm with an electroplated Cu coil over an NdFeB magnet, batch-fabricated on silicon. It runs from a 0.4 Vpp signal with no DC bias.</p>
+  </section>
+</main>
+<footer>Short excerpts used for research demonstration only.</footer>
+
+<script>
+(function () {
+  const tracks = [...document.querySelectorAll('[data-track]')];
+  const fmt = t => { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
+
+  const players = tracks.map(el => {
+    const audios = [...el.querySelectorAll('audio')];
+    const play = el.querySelector('.play');
+    const seek = el.querySelector('input[type=range]');
+    const cur = el.querySelector('.cur'), dur = el.querySelector('.dur');
+    const segs = [...el.querySelectorAll('.seg button')];
+    const p = { el, audios, active: 0, playing: false };
+
+    // both clips always play together; only the active one is audible, so switching is instant
+    const applyMute = () => audios.forEach((a, i) => { a.muted = i !== p.active; });
+    applyMute();
+
+    p.pause = () => {
+      audios.forEach(a => a.pause());
+      p.playing = false; play.innerHTML = '&#9654;'; play.setAttribute('aria-label', play.getAttribute('aria-label').replace('Pause', 'Play'));
+    };
+    p.start = () => {
+      players.forEach(o => { if (o !== p && o.playing) o.pause(); });
+      const t = audios[p.active].currentTime;
+      audios.forEach(a => { a.currentTime = t; });
+      Promise.all(audios.map(a => a.play())).catch(() => {});
+      p.playing = true; play.innerHTML = '&#10074;&#10074;'; play.setAttribute('aria-label', play.getAttribute('aria-label').replace('Play', 'Pause'));
+    };
+
+    play.addEventListener('click', () => (p.playing ? p.pause() : p.start()));
+    segs.forEach((b, i) => b.addEventListener('click', () => {
+      if (i === p.active) return;
+      const t = audios[p.active].currentTime;
+      if (Math.abs(audios[i].currentTime - t) > 0.04) audios[i].currentTime = t;
+      p.active = i; applyMute();
+      segs.forEach((s, k) => s.setAttribute('aria-pressed', String(k === i)));
+    }));
+    seek.addEventListener('input', () => { audios.forEach(a => { a.currentTime = +seek.value; }); cur.textContent = fmt(+seek.value); });
+
+    const lead = audios[0];
+    lead.addEventListener('loadedmetadata', () => { seek.max = lead.duration.toFixed(1); dur.textContent = fmt(lead.duration); });
+    audios.forEach((a, i) => a.addEventListener('timeupdate', () => {
+      if (i !== p.active) return;
+      seek.value = a.currentTime; cur.textContent = fmt(a.currentTime);
+      const other = audios[1 - i];   // keep the silent clip locked to the audible one
+      if (p.playing && Math.abs(other.currentTime - a.currentTime) > 0.08) other.currentTime = a.currentTime;
+    }));
+    lead.addEventListener('ended', () => { p.pause(); audios.forEach(a => { a.currentTime = 0; }); seek.value = 0; cur.textContent = '0:00'; });
+    return p;
+  });
+})();
+</script>
+</body>
+</html>
