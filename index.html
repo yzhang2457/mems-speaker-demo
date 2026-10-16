@@ -56,11 +56,11 @@
 </header>
 
 <main>
-  <div class="tip"><strong>Use headphones.</strong> Press play, then tap the two buttons to switch instantly between our MEMS microspeaker and a commercial earphone at the same point in the song.</div>
+  <div class="tip"><strong>Use headphones and set the volume to 50% or higher.</strong> Press play, then tap the two buttons to switch instantly between our MEMS microspeaker and a commercial earphone at the same point in the song.</div>
 
   <div class="track" data-track>
     <h2>Hotel California</h2>
-    <p class="sub">30-second excerpt</p>
+    <p class="sub">Eagles · from <em>Hotel California</em> (1976) · 30-second excerpt</p>
     <audio preload="auto" src="audio/hotel-california_mems.m4a"></audio>
     <audio preload="auto" src="audio/hotel-california_ie100.m4a"></audio>
     <div class="row">
@@ -78,7 +78,7 @@
 
   <div class="track" data-track>
     <h2>Breathless</h2>
-    <p class="sub">30-second excerpt</p>
+    <p class="sub">Wordcolour · from <em>Juno Way</em> · 30-second excerpt</p>
     <audio preload="auto" src="audio/breathless_mems.m4a"></audio>
     <audio preload="auto" src="audio/breathless_ie100.m4a"></audio>
     <div class="row">
@@ -86,6 +86,24 @@
       <div class="timeline">
         <input type="range" min="0" max="30" step="0.1" value="0" aria-label="Seek in Breathless">
         <div class="time"><span class="cur">0:00</span><span class="dur">0:30</span></div>
+      </div>
+    </div>
+    <div class="seg" role="group" aria-label="Choose speaker">
+      <button aria-pressed="true">This work<small>MEMS microspeaker</small></button>
+      <button aria-pressed="false">IE 100 Pro<small>10 mm dynamic driver</small></button>
+    </div>
+  </div>
+
+  <div class="track" data-track>
+    <h2>Poems of Drums (鼓诗)</h2>
+    <p class="sub">阎学敏 (Yan Xuemin) · 32-second excerpt</p>
+    <audio preload="auto" src="audio/poems-of-drums_mems.m4a"></audio>
+    <audio preload="auto" src="audio/poems-of-drums_ie100.m4a"></audio>
+    <div class="row">
+      <button class="play" aria-label="Play Poems of Drums">&#9654;</button>
+      <div class="timeline">
+        <input type="range" min="0" max="33" step="0.1" value="0" aria-label="Seek in Poems of Drums">
+        <div class="time"><span class="cur">0:00</span><span class="dur">0:33</span></div>
       </div>
     </div>
     <div class="seg" role="group" aria-label="Choose speaker">
@@ -102,10 +120,10 @@
       <li>An ear simulator is not a human ear, so this is a side-by-side comparison, not exactly what you would hear wearing either earphone.</li>
     </ul>
     <h3>About the microspeaker</h3>
-    <p>A 26 mm² corrugated Parylene-D diaphragm with an electroplated Cu coil over an NdFeB magnet, batch-fabricated on silicon. It runs from a 0.4 Vpp signal with no DC bias.</p>
+    <p>A 26 mm² corrugated Parylene-D diaphragm with an electroplated Cu coil over an NdFeB magnet, batch-fabricated on silicon. The diaphragm chip plus magnet is only ~0.6 mm thick, and the sensitivity is about 110 dB SPL/V<sub>rms</sub> at 1 kHz with no DC bias.</p>
   </section>
 </main>
-<footer>Short excerpts used for research demonstration only.</footer>
+<footer>Music excerpts © their respective artists and labels; short excerpts used for research demonstration only.</footer>
 
 <script>
 (function () {
