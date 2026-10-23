@@ -62,6 +62,11 @@
   svg.fr .note { font-weight: 700; font-size: 13px; }
   svg.fr .note.mm { fill: var(--mm); }
   svg.fr .note.ie { fill: var(--ie); }
+  .motion { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 14px; margin: 14px 0 0; }
+  .motion h4 { margin: 0 0 10px; font-size: 16px; color: var(--ink); }
+  .motion video { display: block; width: 100%; height: auto; aspect-ratio: 9 / 5; border-radius: 10px; background: #000; }
+  .motion .cap { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
+  .motion .cap strong { color: var(--ink); }
   section.about { font-size: 15px; color: var(--muted); }
   section.about h3 { color: var(--ink); font-size: 16px; margin: 24px 0 6px; }
   section.about ul { padding-left: 20px; margin: 6px 0; }
@@ -177,11 +182,24 @@
     </ul>
     <h3>About the microspeaker</h3>
     <p>A 26 mm² corrugated Parylene-D diaphragm with an electroplated Cu coil over an NdFeB magnet, batch-fabricated on silicon. The diaphragm chip plus magnet is only ~0.6 mm thick, and the sensitivity is about 110 dB SPL/V<sub>rms</sub> at 1 kHz with no DC bias.</p>
+    <div class="motion" role="group" aria-labelledby="motion-h">
+      <h4 id="motion-h">See the diaphragm move</h4>
+      <video src="video/d6-piston-4hz-4vpp.mp4" poster="video/d6-piston-poster.jpg"
+             autoplay muted loop playsinline preload="auto"
+             aria-label="Looping video of the MEMS microspeaker diaphragm moving up and down"></video>
+      <p class="cap"><strong>Driven at 4&nbsp;Hz with 4&nbsp;V<sub>pp</sub></strong>, a slow, large signal that makes the motion visible: the whole diaphragm and coil move up and down together as a piston. At audio frequencies the motion is far smaller and too fast to see. (Video at 10 frames/s, perspective-corrected and cropped.)</p>
+    </div>
   </section>
 </main>
 <footer>Music excerpts © their respective artists and labels; short excerpts used for research demonstration only.</footer>
 
 <script>
+(function () {
+  const vid = document.querySelector('.motion video');
+  if (vid && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    vid.removeAttribute('autoplay'); vid.pause(); vid.controls = true;
+  }
+})();
 (function () {
   const tracks = [...document.querySelectorAll('[data-track]')];
   const fmt = t => { t = Math.max(0, Math.floor(t || 0)); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
